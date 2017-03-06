@@ -16,6 +16,7 @@ utils.runEvery(100, Game.spawns, function(spawn) {
 })
 
 _.invoke(Game.creeps, 'run')
+_.invoke(Game.spawns, 'checkRenew')
 
 // for(var name in Game.creeps) {
 //     var creep = Game.creeps[name];

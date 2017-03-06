@@ -45,3 +45,17 @@ StructureSpawn.prototype.checkRoads = function() {
   )
 
 };
+
+StructureSpawn.prototype.checkRenew = function() {
+    var targets = this.pos.findInRange(FIND_MY_CREEPS, 1)
+    targets.reduce((acc, creep) => {
+        if(!acc.length)
+            if(creep.ticksToLive < 1800 - Math.floor(600/creep.body.length))
+                acc.push(creep)
+        return acc
+    }, []).map(creep => {
+        console.log(`Renewing creep ${creep.name} with ${Math.floor(600/creep.body.length)} ticks (had ${creep.ticksToLive}) for ${Math.ceil(roles[creep.memory.role].cost/2.5/creep.body.length)} energy`)
+        this.renewCreep(creep)
+    })
+}
+
