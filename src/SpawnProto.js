@@ -38,7 +38,7 @@ StructureSpawn.prototype.checkRoads = function() {
 
   utils.getAroundMatrix(this.pos, true).map(pos => pos.createConstructionSite(STRUCTURE_ROAD))
 
-  this.room.find(FIND_SOURCES).map(
+  this.room.find(FIND_SOURCES).concat([this.room.controller]).map(
     source => source.pos.findPathTo(this, {ignoreCreeps: true, ignoreRoads:true}).map(
       pos => utils.getAroundMatrix({x: pos.x, y: pos.y, roomName:this.room.name}).map(pos => pos.createConstructionSite(STRUCTURE_ROAD))
     )
