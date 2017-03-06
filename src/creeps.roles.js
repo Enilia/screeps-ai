@@ -12,7 +12,8 @@ var utils = require('utils')
 module.exports = {
 
     harvester: {
-        body: [MOVE, WORK, CARRY]
+        body: [MOVE, MOVE, WORK, WORK, WORK, CARRY] // = 450 energy
+      , cost: 450
       , role: 'harvester'
       , max: function(room) {
         return room.find(FIND_SOURCES).map(
@@ -26,7 +27,8 @@ module.exports = {
     },
 
     upgrader: {
-        body: [MOVE, WORK, CARRY]
+        body: [MOVE, MOVE, WORK, WORK, WORK, CARRY] // = 450 energy
+      , cost: 450
       , role: 'upgrader'
       , max: function(room) {
         return 3
