@@ -23,7 +23,16 @@ Creep.prototype.isEmpty = function() {
     return this.carry.energy === 0
 };
 
+Creep.prototype.pickupEnergy = function() {
+    var energy = this.pos.findClosestByRange(FIND_DROPPED_RESOURCES);
+    if(energy && this.pickup(energy) == ERR_NOT_IN_RANGE) {
+        this.moveTo(energy, {visualizePathStyle: {stroke: '#ffaa00'}});
+    }
+    return energy
+}
+
 Creep.prototype.harvestSource = function() {
+    // if(this.pickupEnergy()) return; // DISABLED // TODO: FIND FIX WHEN ENERGY DROPS FROM HARVEST OVERFLOW
     var source = this.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
     if(this.harvest(source) == ERR_NOT_IN_RANGE) {
         this.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
